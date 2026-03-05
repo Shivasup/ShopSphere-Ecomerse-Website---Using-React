@@ -1,0 +1,147 @@
+.about-page{
+  font-family:"Segoe UI",sans-serif;
+  background:#f6f8fc;
+  color:#222;
+}
+
+
+
+.about-hero{
+  height:340px;
+  background:linear-gradient(
+      rgba(0,0,0,0.55),
+      rgba(0,0,0,0.55)
+    ),
+    url("https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.about-hero-content{
+  text-align:center;
+  color:white;
+}
+
+.about-hero-content h1{
+  font-size:3rem;
+  margin-bottom:10px;
+}
+
+.about-hero-content p{
+  font-size:1.1rem;
+  opacity:0.9;
+}
+
+
+
+.about-intro{
+  padding:60px 10%;
+  text-align:center;
+}
+
+.about-intro h2{
+  color:#2563eb;
+  margin-bottom:15px;
+}
+
+
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:25px;
+  padding:40px 10%;
+}
+
+.stat-card{
+  background:white;
+  padding:30px;
+  text-align:center;
+  border-radius:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.stat-card h3{
+  font-size:2rem;
+  color:#2563eb;
+}
+
+
+
+.about-content{
+  padding:60px 10%;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+
+.about-card{
+  background:white;
+  padding:28px;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.about-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 18px 45px rgba(0,0,0,0.15);
+}
+
+.about-card h2{
+  color:#2563eb;
+  margin-bottom:12px;
+}
+
+.about-card ul{
+  padding-left:20px;
+}
+
+
+
+.why-us{
+  padding:70px 10%;
+  background:white;
+}
+
+.why-us h2{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.why-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:30px;
+}
+
+.why-card{
+  background:#f8fafc;
+  padding:25px;
+  border-radius:14px;
+  text-align:center;
+  transition:0.3s;
+}
+
+.why-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 30px rgba(0,0,0,0.1);
+}
+
+@media(max-width:768px){
+
+  .about-hero-content h1{
+    font-size:2.2rem;
+  }
+
+  .about-content,
+  .stats,
+  .about-intro,
+  .why-us{
+    padding:40px 6%;
+  }
+
+}
