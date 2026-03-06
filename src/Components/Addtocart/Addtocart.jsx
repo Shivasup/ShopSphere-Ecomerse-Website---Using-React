@@ -57,7 +57,7 @@ const Addtocart = () => {
 
           <tr>
             <td colSpan="6" className="total">
-              <h2>Total Amount = ${p.toFixed(2)}</h2>
+              <h2>Total Amount = ${p.toFixed(0)}</h2>
             </td>
           </tr>
         </tbody>
