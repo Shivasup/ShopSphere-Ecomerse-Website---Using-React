@@ -20,7 +20,7 @@ const Card = () => {
           <div className="card-content">
             <h3 className="name">{e.name}</h3>
             <p className="category">{e.description}</p>
-            <h2 className="price">{Math.round(Number(e.price))}</h2>
+            <h2 className="price">₹ {Math.round(Number(e.price))}</h2>
 
             <button
               className="cart-btn"
