@@ -22,7 +22,7 @@ const App = () => {
   const [data, setdata] = useState([]);
 
   let f_data = async () => {
-    let datas = await fetch("https://fakestoreapi.com/products");
+    let datas = await fetch("https://productsapi-ov63.onrender.com/api/");
     let fetch_data = await datas.json();
     setdata(fetch_data);
   };

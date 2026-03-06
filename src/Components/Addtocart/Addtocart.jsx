@@ -27,7 +27,7 @@ const Addtocart = () => {
           {g.map((item, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
-              <td>{item.title}</td>
+              <td>{item.name}</td>
 
               <td className="qty-box">
                 <button className="qty-btn" onClick={() => d(index)}>

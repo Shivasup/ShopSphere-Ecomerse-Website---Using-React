@@ -11,13 +11,16 @@ const Card = () => {
       {data.map((e) => (
         <div className="card-container" key={e.id}>
           <div className="card-image">
-            <img src={e.image} alt={e.title} />
+            <img
+              src={e.image ? e.image : "https://via.placeholder.com/200"}
+              alt={e.name}
+            />
           </div>
 
           <div className="card-content">
-            <h3 className="title">{e.title}</h3>
-            <p className="category">{e.category}</p>
-            <h2 className="price">$ {Math.round(e.price)}</h2>
+            <h3 className="name">{e.name}</h3>
+            <p className="category">{e.description}</p>
+            <h2 className="price">$ {Math.round(Number(e.price))}</h2>
 
             <button
               className="cart-btn"
