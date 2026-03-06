@@ -15,110 +15,128 @@ export const pr = createContext();
 
 export const r = createContext();
 export const u = createContext();
-
 export const rem = createContext();
 
 const App = () => {
+
   const [data, setdata] = useState([]);
 
- useEffect(() => {
-  const f_data = async () => {
-    try {
-      const res = await fetch("https://productsapi-ov63.onrender.com/api/");
-      const fetch_data = await res.json();
-      console.log(fetch_data); // check in console
-      setdata(fetch_data);
-    } catch (err) {
-      console.log("API error:", err);
+  useEffect(() => {
+    const f_data = async () => {
+      try {
+        const res = await fetch("https://productsapi-ov63.onrender.com/api/");
+        const fetch_data = await res.json();
+       
+        setdata(fetch_data);
+      } catch (err) {
+        console.log("API error:", err);
+      }
+    };
+
+    f_data();
+  }, []);
+
+  const [cart, setcart] = useState([]);
+  const [price, setprice] = useState(0);
+
+  // ADD TO CART
+  const add = (e) => {
+    const update = [...cart];
+
+    let confirmAdd = confirm("Do u want to add to cart");
+
+    if (confirmAdd === true) {
+
+      if (cart.some((item) => item.id === e.id)) {
+        alert("Item already present in cart");
+      } else {
+
+        const item = { ...e, price: Number(e.price), qty: 1 };
+
+        update.push(item);
+        setcart(update);
+
+        setprice(price + item.price);
+
+        alert("Added successfully");
+      }
     }
   };
 
-  f_data();
-}, []);
+  // REMOVE PRODUCT
+  const remove = (i) => {
+    const de = [...cart];
+    let con = confirm("Are you sure to delete");
 
-  const [cart, setcart] = useState([]);
-  const [price,setprice]=useState(0);
+    if (con === true) {
 
-  const add = (e) => {
-  const update = [...cart];
+      const item = de[i];
+      const qty = item.qty || 1;
 
-  let u = confirm("Do u want to add to cart");
+      setprice(price - (item.price * qty));
 
-  if (u === true) {
-
-    if (cart.includes(e)) {
-      alert("Item already present in cart");
-    } else {
-
-      const item = { ...e, qty: 1 };   
-
-      update.push(item);
-      setcart(update);
-
-      setprice(price + item.price);
-
-      alert("added successfully");
+      de.splice(i, 1);
+      setcart(de);
     }
-  }
-};
+  };
 
- const remove = (i) => {
-  const de = [...cart];
-  let con = confirm("Are you sure to delete");
+  // DECREASE QTY
+  const remore = (index) => {
 
-  if (con === true) {
-    const item = de[i];
-    const qty = item.qty || 1;   
+    const update = [...cart];
 
-    setprice(price - item.price * qty);
+    if ((update[index].qty || 1) > 1) {
 
-    de.splice(i, 1);
-    setcart(de);
-  }
-};
-const remore = (index) => {
-  const update = [...cart];
+      update[index].qty -= 1;
+      setcart(update);
+      setprice(price - update[index].price);
+    }
+    else{
+      alert("Use delete button")
+    }
+  };
 
-  if ((update[index].qty || 1) > 1) {
-    update[index].qty -= 1;
+  // INCREASE QTY
+  const addmore = (index) => {
+
+    const update = [...cart];
+
+    update[index].qty = (update[index].qty || 1) + 1;
 
     setcart(update);
-    setprice(price - update[index].price);
-  }
-};
-
-const addmore = (index) => {
-  const update = [...cart];
-  update[index].qty = (update[index].qty || 1) + 1;
-  setcart(update);
-  setprice(price + update[index].price);
-};
+    setprice(price + update[index].price);
+  };
 
   return (
     <div>
+
       <rem.Provider value={remore}>
-      <u.Provider value={addmore}>
-      <r.Provider value={remove}>
-      <pr.Provider value={price}>
-      <s.Provider value={cart}>
-        <a.Provider value={add}>
-          <d.Provider value={data}>
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/About" element={<About />} />
-              <Route path="/Addtocart" element={<Addtocart />} />
-              <Route path="/Contact" element={<Contact />} />
-              <Route path="/RandomImg" element={<RandomImg />} />
-              <Route path="/Cards" element={<Cards />} />
-            </Routes>
-          </d.Provider>
-        </a.Provider>
-      </s.Provider>
-      </pr.Provider>
-      </r.Provider>
-      </u.Provider>
+        <u.Provider value={addmore}>
+          <r.Provider value={remove}>
+            <pr.Provider value={price}>
+              <s.Provider value={cart}>
+                <a.Provider value={add}>
+                  <d.Provider value={data}>
+
+                    <Navbar />
+
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/About" element={<About />} />
+                      <Route path="/Addtocart" element={<Addtocart />} />
+                      <Route path="/Contact" element={<Contact />} />
+                      <Route path="/RandomImg" element={<RandomImg />} />
+                      <Route path="/Cards" element={<Cards />} />
+                    </Routes>
+
+                  </d.Provider>
+                </a.Provider>
+              </s.Provider>
+            </pr.Provider>
+          </r.Provider>
+        </u.Provider>
       </rem.Provider>
+
     </div>
   );
 };
