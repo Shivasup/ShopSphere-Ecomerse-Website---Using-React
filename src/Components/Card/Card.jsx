@@ -12,7 +12,7 @@ const Card = () => {
         <div className="card-container" key={e.id}>
           <div className="card-image">
             <img
-              src={e.image ? e.image : "https://via.placeholder.com/200"}
+              src={e.image}
               alt={e.name}
             />
           </div>
