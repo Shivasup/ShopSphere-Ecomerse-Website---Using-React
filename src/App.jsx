@@ -21,14 +21,20 @@ export const rem = createContext();
 const App = () => {
   const [data, setdata] = useState([]);
 
-  let f_data = async () => {
-    let datas = await fetch("https://productsapi-ov63.onrender.com/api/");
-    let fetch_data = await datas.json();
-    setdata(fetch_data);
+ useEffect(() => {
+  const f_data = async () => {
+    try {
+      const res = await fetch("https://productsapi-ov63.onrender.com/api/");
+      const fetch_data = await res.json();
+      console.log(fetch_data); // check in console
+      setdata(fetch_data);
+    } catch (err) {
+      console.log("API error:", err);
+    }
   };
-  useEffect(() => {
-    f_data();
-  }, []);
+
+  f_data();
+}, []);
 
   const [cart, setcart] = useState([]);
   const [price,setprice]=useState(0);
