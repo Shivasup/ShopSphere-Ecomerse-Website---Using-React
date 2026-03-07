@@ -21,7 +21,7 @@ const Petcare = () => {
   }, []);
 
   const filteredProducts = data.filter((item) =>
-    item.name.toLowerCase().includes(search.toLowerCase())
+    item.name.toLowerCase().startsWith(search.toLowerCase())
   );
 
   return (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { a, searchContext } from "../../App";
-import "./pharmacy.css";
+import "./Pharmacy.css";
 
 const Pharmacy = () => {
 
@@ -21,7 +21,7 @@ const Pharmacy = () => {
   }, []);
 
   const filteredProducts = data.filter((item) =>
-    item.name.toLowerCase().includes(search.toLowerCase())
+    item.name.toLowerCase().startsWith(search.toLowerCase())
   );
 
   return (
