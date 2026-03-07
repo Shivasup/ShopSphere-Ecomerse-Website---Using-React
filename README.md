@@ -9,7 +9,7 @@ The project demonstrates **React fundamentals, Context API, API integration, rou
 # 🌐 Live Demo
 
 🚀 **Live Website:**  
-https://new-project-gamma-one.vercel.app/
+https://shop-sphere-ecomerse-website-using-gamma.vercel.app/
 
 Hosted using Vercel.
 
