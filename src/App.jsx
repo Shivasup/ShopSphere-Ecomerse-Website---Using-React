@@ -7,6 +7,8 @@ import Addtocart from "./Components/Addtocart/Addtocart";
 import Contact from "./Components/Contact/Contact";
 import Cards from "./Components/Cards/Cards";
 import RandomImg from "./Components/RandomImg/RandomImg";
+import Pharmacy from "./Components/Pharmacy/Pharmacy";
+import Petcare from "./Components/Petcare/Petcare";
 
 export const d = createContext();
 export const a = createContext();
@@ -17,6 +19,9 @@ export const r = createContext();
 export const u = createContext();
 export const rem = createContext();
 
+
+export const searchContext = createContext();   
+
 const App = () => {
 
   const [data, setdata] = useState([]);
@@ -26,7 +31,6 @@ const App = () => {
       try {
         const res = await fetch("https://productsapi-ov63.onrender.com/api/");
         const fetch_data = await res.json();
-       
         setdata(fetch_data);
       } catch (err) {
         console.log("API error:", err);
@@ -39,30 +43,33 @@ const App = () => {
   const [cart, setcart] = useState([]);
   const [price, setprice] = useState(0);
 
+  const [search, setSearch] = useState("");   
+
   // ADD TO CART
-  const add = (e) => {
-    const update = [...cart];
+ const add = (e) => {
 
-    let confirmAdd = confirm("Do u want to add to cart");
+  const update = [...cart];
 
-    if (confirmAdd === true) {
+  let confirmAdd = confirm("Do u want to add to cart");
 
-      if (cart.some((item) => item.id === e.id)) {
-        alert("Item already present in cart");
-      } else {
+  if (confirmAdd === true) {
 
-        const item = { ...e, price: Number(e.price), qty: 1 };
+    if (cart.some((item) => item.name === e.name)) {
+      alert("Item already present in cart");
+    } 
+    else {
 
-        update.push(item);
-        setcart(update);
+      const item = { ...e, price: Number(e.price), qty: 1 };
 
-        setprice(price + item.price);
+      update.push(item);
+      setcart(update);
 
-        alert("Added successfully");
-      }
+      setprice(price + item.price);
+
+      alert("Added successfully");
     }
-  };
-
+  }
+};
   // REMOVE PRODUCT
   const remove = (i) => {
     const de = [...cart];
@@ -107,9 +114,10 @@ const App = () => {
     setprice(price + update[index].price);
   };
 
+
   return (
     <div>
-
+    <searchContext.Provider value={{search,setSearch}}>   
       <rem.Provider value={remore}>
         <u.Provider value={addmore}>
           <r.Provider value={remove}>
@@ -127,6 +135,8 @@ const App = () => {
                       <Route path="/Contact" element={<Contact />} />
                       <Route path="/RandomImg" element={<RandomImg />} />
                       <Route path="/Cards" element={<Cards />} />
+                      <Route path="/Pharmacy" element={<Pharmacy />} />
+                      <Route path="/Petcare" element={<Petcare />} />
                     </Routes>
 
                   </d.Provider>
@@ -136,6 +146,7 @@ const App = () => {
           </r.Provider>
         </u.Provider>
       </rem.Provider>
+      </searchContext.Provider>   
 
     </div>
   );

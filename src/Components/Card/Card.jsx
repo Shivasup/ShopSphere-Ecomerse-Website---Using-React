@@ -1,15 +1,24 @@
 import React, { useContext } from "react";
 import "./Card.css";
-import { a, d } from "../../App";
+import { a, d, searchContext } from "../../App";
 
 const Card = () => {
+
   const data = useContext(d);
   const addCart = useContext(a);
+  const { search } = useContext(searchContext);  
+
+
+  const filteredProducts = data.filter((item) =>
+    item.name.toLowerCase().startsWith(search.toLowerCase())
+  );
 
   return (
     <div className="main-container">
-      {data.map((e) => (
+
+      {filteredProducts.map((e) => (  
         <div className="card-container" key={e.id}>
+
           <div className="card-image">
             <img
               src={e.image}
@@ -30,9 +39,12 @@ const Card = () => {
             >
               Add to Cart 🛒
             </button>
+
           </div>
+
         </div>
       ))}
+
     </div>
   );
 };

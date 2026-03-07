@@ -84,10 +84,12 @@
 /* CATEGORY COLORS */
 .green {
   background: linear-gradient(135deg, #0f766e, #14b8a6);
+  text-decoration: none;
 }
 
 .yellow {
   background: linear-gradient(135deg, #92400e, #f59e0b);
+  text-decoration: none;
 }
 
 .blue {

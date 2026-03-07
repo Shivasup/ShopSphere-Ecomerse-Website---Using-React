@@ -69,3 +69,21 @@
     border-radius:50%;
     font-size:12px;
 }
+
+.search-box{
+display:flex;
+align-items:center;
+background:white;
+padding:5px 10px;
+border-radius:20px;
+}
+
+.search-box input{
+border:none;
+outline:none;
+}
+
+.search-box i{
+margin-left:5px;
+color:#555;
+}
