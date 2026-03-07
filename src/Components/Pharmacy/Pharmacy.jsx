@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { a, searchContext } from "../../App";
-import "./Pharmacy.css";
+import "./pharmacy.css";
 
 const Pharmacy = () => {
 
